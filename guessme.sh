@@ -1,4 +1,5 @@
 #!/bin/bash
+#ealmonte
 
 # this is a script for the GUESS ME game, written by Emyll Almonte
 
