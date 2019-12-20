@@ -1,4 +1,7 @@
 #!/bin/bash
+#ealmonte
+
+#trying to test gauss calculation with minimal # of iterations
 
 LOW=49
 HIGH=51
@@ -14,4 +17,3 @@ do
  HIGH=$(expr $HIGH + 1)
  echo "Total is $TOTAL"
 done
-
