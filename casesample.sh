@@ -1,4 +1,5 @@
 #!/bin/bash
+#ealmonte
 #sample for using case statements
 
 echo -e "(if you want to exit type exit as the fruit name or press ctrl+c)\n"
