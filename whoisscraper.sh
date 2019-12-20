@@ -1,7 +1,13 @@
 #!/bin/bash
+#ealmonte
+
+#clear screen
 clear
+
 echo " ================================== "
 echo -e "If you want to exit the program, type exit as the domain name.\n"
+
+#allow 10 searches
 for i in {1..10}
 do
  echo -e "\nThis is search #$i\n"
