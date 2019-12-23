@@ -1,11 +1,11 @@
 #!/bin/bash
 #ealmonte
 
-#trying to test gauss calculation with minimal # of iterations
+#trying to test gauss calculation with minimal # of iterations but only one ++ or --
 
 LOW=49
 HIGH=51
-TOTAL=0
+TOTAL=50 #because low and high skip it on first iteration
 
 for i in {1..50}
 do
