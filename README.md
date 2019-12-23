@@ -1,2 +1,2 @@
 # csit432
-linux system administration class files
+basic practice files from linux system administration class
