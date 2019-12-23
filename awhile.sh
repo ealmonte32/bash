@@ -1,11 +1,12 @@
 #!/bin/bash
+#ealmonte
 
-# this file will check for the existence of a file
+# this will check for the existence of a file
 # -f means , does a file exist, so ! -f means  while it doesnt exist..
 
-while [ ! -f /home/ec2-user/STOP ]
+while [ ! -f /folder/STOP ]
 do
  echo "The file is NOT there yet"
  sleep 3
 done
-banner Yay, file there!
+# then we can just send a touch /folder/STOP to stop the script
