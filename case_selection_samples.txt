@@ -1,4 +1,4 @@
-#!/bin/bash
+#source: http://linuxcommand.org/
 
 press_enter()
 {
