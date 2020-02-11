@@ -1,5 +1,6 @@
 #!/bin/bash
 #ealmonte
+#check entered password by converting to sha256 hash
 
 echo ""
 #read option -s means enter silently
@@ -22,4 +23,3 @@ fi
 rm -f /tmp/passenter /tmp/passverify
 
 #end
-
