@@ -1,7 +1,9 @@
 #!/bin/bash
 #ealmonte32
 
-rm -rf ./500wingcamerasfound.txt; rm -rf ./500wingnoresponse.txt;
+#clear any previous results
+rm -rf ./500wingcamerasfound.txt
+rm -rf ./500wingnoresponse.txt
 
 for i in {10..249}
 do
