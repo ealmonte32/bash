@@ -1,0 +1,46 @@
+[Unit]
+Description=Screenly Viewer
+After=matchbox.service screenly-web.service
+
+[Service]
+WorkingDirectory=/home/pi/screenly
+User=pi
+
+# CPU Limits
+#CPUAccounting=yes
+#CPUQuota=99%
+
+# Memory Limits
+MemoryAccounting=yes
+MemoryLimit=60%
+
+# Kill Signal control
+KillMode=process
+#KillSignal=SIGSTOP
+#SendSIGHUP=yes
+
+# Testing
+PrivateTmp=yes
+LimitCPU=120s
+
+Environment=DISPLAY=:0.0
+
+# Fix white flickering in omxplayer
+Environment=NOREFRESH=1
+
+Environment=PYTHONPATH=/home/pi/screenly
+
+# Don't activate screensaver
+ExecStartPre=/usr/bin/xset s off
+
+# Disable DPMS (Energy Star) features
+ExecStartPre=/usr/bin/xset -dpms
+
+# Don't blank the video device
+ExecStartPre=/usr/bin/xset s noblank
+
+ExecStart=/usr/bin/python /home/pi/screenly/viewer.py
+Restart=always
+RestartSec=5
+#StartLimitInterval=100
+#StartLimitBurst=3
