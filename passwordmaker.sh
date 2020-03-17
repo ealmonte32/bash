@@ -4,6 +4,7 @@
 alphabet_array=(a b c d e f g h i j k l m n o p q r s t u v w x y z)
 #array index #=(0 1 2 3 4 5 6 7 8 9 10...........................25)
 ciphertext=()
+decryptedtext=()
 
 # function to encrypt
 function encrypt {
@@ -58,7 +59,46 @@ fi
 
 # function to decrypt
 function decrypt {
-echo "Decrypt function here"
+
+echo -e "\nPlease enter the number from 1-25 as the key for decryption, then press enter: "
+read key
+
+if [[ $key -lt 1 ]] || [[ $key -gt 25 ]]; then
+	echo "(Error) You entered an incorrect number."
+	read -p "Would you like to try again? (y/n): " -n 1 -r -s tryagain
+	if [ "$tryagain" != "y" ]; then
+	 echo -e "Goodbye.\n"; exit
+	else
+	 clear;decrypt;
+	fi
+	exit;
+fi
+
+echo "Please enter the ciphertext you would like to decrypt, then press enter: "
+read encryptedtext
+
+if [[ "$encryptedtext" != "" ]]; then #if value of plaintext is not empty run the commands below
+
+for (( x=0; x<${#encryptedtext}; x++ )); do #this for loop will run upto the length of characters in plaintext
+ for i in "${!alphabet_array[@]}"; do #this for loop runs and checks every index of the alphabet array
+  if [ "${encryptedtext:$x:1}" == "${alphabet_array[$i]}" ]; then #if the character is found in the current index of array
+	i=$(expr $i - $key ); #add an integer of value of key to the index
+	if [ $i -lt 0 ]; then
+	i=$(expr $i + 26 )
+	fi
+	decryptedtext=("${decryptedtext[@]}" "${alphabet_array[i]}") #add each character to the new ciphertext array
+  fi
+ done
+done
+
+finaldecrypted=$(echo ${decryptedtext[@]} | tr -d [:space:]) #this is done to retrieve every ciphered character and remove the space
+echo -e "\nYour Decrypted text is: $finaldecrypted"
+
+else #if the user did not enter anything for encryptedtext, throw error and exit program
+ echo "(Error) You did not enter text to decrypt."
+ echo "Program will now exit."; exit
+fi
+
 }
 
 
