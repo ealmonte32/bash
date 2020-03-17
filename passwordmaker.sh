@@ -60,7 +60,7 @@ fi
 # function to decrypt
 function decrypt {
 
-echo -e "\nPlease enter the number from 1-25 as the key for decryption, then press enter: "
+echo -e "\nPlease enter the number key (1-25) that was used for encryption, then press enter: "
 read key
 
 if [[ $key -lt 1 ]] || [[ $key -gt 25 ]]; then
@@ -77,16 +77,16 @@ fi
 echo "Please enter the ciphertext you would like to decrypt, then press enter: "
 read encryptedtext
 
-if [[ "$encryptedtext" != "" ]]; then #if value of plaintext is not empty run the commands below
+if [[ "$encryptedtext" != "" ]]; then #if value of encryptedtext is not empty run the commands below
 
-for (( x=0; x<${#encryptedtext}; x++ )); do #this for loop will run upto the length of characters in plaintext
+for (( x=0; x<${#encryptedtext}; x++ )); do #this for loop will run upto the length of characters in encryptedtext
  for i in "${!alphabet_array[@]}"; do #this for loop runs and checks every index of the alphabet array
   if [ "${encryptedtext:$x:1}" == "${alphabet_array[$i]}" ]; then #if the character is found in the current index of array
-	i=$(expr $i - $key ); #add an integer of value of key to the index
+	i=$(expr $i - $key ); #subtract an integer of value of key to the index
 	if [ $i -lt 0 ]; then
 	i=$(expr $i + 26 )
 	fi
-	decryptedtext=("${decryptedtext[@]}" "${alphabet_array[i]}") #add each character to the new ciphertext array
+	decryptedtext=("${decryptedtext[@]}" "${alphabet_array[i]}") #add each character to the new decryptedtext array
   fi
  done
 done
