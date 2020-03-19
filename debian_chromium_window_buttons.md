@@ -1,0 +1,3 @@
+gsettings set org.gnome.desktop.wm.preferences button-layout ':minimize,maximize,close'
+
+this will show the button layout on chromium windows...
