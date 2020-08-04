@@ -1,4 +1,5 @@
-Examples of cat <<EOF syntax usage in Bash:
+Examples of <<EOF syntax usage in Bash:
+
 1. Assign multi-line string to a shell variable
 $ sql=$(cat <<EOF
 SELECT foo, bar FROM db
@@ -13,11 +14,11 @@ $ cat <<EOF > print.sh
 echo \$PWD
 echo $PWD
 EOF
-The print.sh file now contains:
 
-#!/bin/bash
+The print.sh file now contains:
 echo $PWD
 echo /home/user
+
 3. Pass multi-line string to a pipe in Bash
 $ cat <<EOF | grep 'b' | tee b.txt
 foo
@@ -25,3 +26,17 @@ bar
 baz
 EOF
 The b.txt file contains bar and baz lines. The same output is printed to stdout.
+
+4. Instead of cat, using read:
+$ read -r -d '' VAR <<'EOF'
+abc'asdf"
+$(dont-execute-this)
+foo"bar"''
+EOF
+
+If you don't quote the variable when you echo it, newlines are lost. Quoting it preserves them:
+
+$ echo "$VAR"
+abc'asdf"
+$(dont-execute-this)
+foo"bar"''
