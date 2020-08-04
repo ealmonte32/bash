@@ -34,9 +34,18 @@ $(dont-execute-this)
 foo"bar"''
 EOF
 
-If you don't quote the variable when you echo it, newlines are lost. Quoting it preserves them:
+If you don't quote the variable when you echo it, newlines are lost, quoting it preserves them:
 
-$ echo "$VAR"
+emyllalmonte@eambp:~$ read -r -d '' VARIABLE << 'EOF'
+> abc'asdf"
+> $(echo "this wont echo")
+> foo"bar"''
+> EOF
+
+emyllalmonte@eambp:~$ echo $VARIABLE
+abc'asdf" $(echo "this wont echo") foo"bar"''
+
+emyllalmonte@eambp:~$ echo "$VARIABLE"
 abc'asdf"
-$(dont-execute-this)
+$(echo "this wont echo")
 foo"bar"''
