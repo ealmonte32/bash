@@ -14,7 +14,7 @@ rm601-ts rm602-ts rm603-ts rm604-ts rm605-ts rm606-ts)
 
 for i in "${TS_ARRAY[@]}"; do #for every item in the array
 ping -t 2 -c 1 $i >/dev/null;
-if [ $? != 0 ] #if exit status is not 0 it means no response
+if [ $? != 0 ] #if exit status is not 0 it means no response so then its offline
 then echo $i >> ts_offline.txt;
 else echo $i >> ts_online.txt;
 fi
