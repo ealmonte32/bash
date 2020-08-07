@@ -3,7 +3,7 @@
 # check if TS is online
 
 # clean up logs
-rm -f ./ts_online.txt; rm -f ./ts_offline.txt;
+rm -f ./ts_online.log; rm -f ./ts_offline.log;
 
 TS_ARRAY=(rm101-ts rm103-ts rm105-ts rm106-ts rm107-ts rm110-ts \
 rm201-ts rm202-ts rm203-ts rm204-ts rm205-ts rm206-ts rm207-ts \
@@ -18,18 +18,17 @@ for i in "${TS_ARRAY[@]}"; do #for every item in the array
 echo -n "." #show progress
 ping -t 2 -c 1 $i >/dev/null 2>&1;
 if [ $? != 0 ] #if exit status is not 0 it means no response
-then echo $i >> ts_offline.txt;
-else echo $i >> ts_online.txt;
+then echo $i >> ./ts_offline.log;
+else echo $i >> ./ts_online.log;
 fi
 done
 
 echo "============================="
 echo "These hosts are online:"
-cat ./ts_online.txt
+cat ./ts_online.log
 echo "============================="
 echo "These hosts are offline:"
-cat ./ts_offline.txt
+cat ./ts_offline.log
 echo "============================="
-
 
 #end
